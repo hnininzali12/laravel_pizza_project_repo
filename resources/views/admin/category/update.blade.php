@@ -1,0 +1,51 @@
+@extends('admin.layout.app')
+
+@section('content')
+<div class="content-wrapper">
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row mt-4">
+          <div class="col-8 offset-3 mt-5">
+            <div class="col-md-9">
+              <a href="{{route('admin#category')}}"class="text-decoration-none text-black"><div class="mb-3 fs-5"><i class="fa-solid fa-arrow-left-long"></i>Back</div></a>
+              <div class="card">
+                <div class="card-header p-2">
+                  <legend class="text-center">Pizza Categories Edition</legend>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                      <form class="form-horizontal" method="post" action="{{route('admin#editCategory')}}">
+                       @csrf
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                              <input type="hidden" class="form-control" id="inputName" value="{{$category->category_id}}"name="id"placeholder="Name">
+                            </div>
+                          <div class="col-sm-10">
+                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                            <input type="text" class="form-control" id="inputName" value="{{old('name',$category->category_name)}}"name="name"placeholder="Name">
+                          </div>
+                          @if($errors->has('name'))
+                          <p class="text-danger">{{$errors->first('name')}}</p>
+                          @endif
+                        </div>
+                        <div class="form-group row">
+                          <div class="offset-sm-2 col-sm-10">
+                           <input type="submit" value="Add" class="btn btn-dark">
+                          </div>
+                        </div>
+                      </form>
+
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+@endsection
